@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Switch
+        android:id="@+id/angularUnitsSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="onUnitsSwitchClicked"
+        android:text="AngleUnitsText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/zeroingDistanceEditText"
+        android:layout_width="89dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/angularUnitsSwitch" />
+
+    <TextView
+        android:id="@+id/zeroingDistanceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zeroing Distance (m)"
+        app:layout_constraintBottom_toTopOf="@+id/zeroingDistanceEditText"
+        app:layout_constraintStart_toStartOf="@+id/zeroingDistanceEditText" />
+
+    <EditText
+        android:id="@+id/xDisplacementEditText"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="numberSigned|numberDecimal"
+        android:text="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zeroingDistanceEditText" />
+
+    <TextView
+        android:id="@+id/xDisplacementTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="X Displacement (cm)"
+        app:layout_constraintBottom_toTopOf="@+id/xDisplacementEditText"
+        app:layout_constraintStart_toStartOf="@+id/xDisplacementEditText" />
+
+    <EditText
+        android:id="@+id/yDisplacementEditText"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="numberSigned|numberDecimal"
+        android:text="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/xDisplacementEditText" />
+
+    <TextView
+        android:id="@+id/yDisplacementTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Y Displacement (cm)"
+        app:layout_constraintBottom_toTopOf="@+id/yDisplacementEditText"
+        app:layout_constraintStart_toStartOf="@+id/yDisplacementEditText" />
+
+    <EditText
+        android:id="@+id/XClicksPerAngleUnitEditText"
+        android:layout_width="50dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginTop="144dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/XClicksPerAngleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="X Clicks per unit angle"
+        app:layout_constraintBottom_toTopOf="@+id/XClicksPerAngleUnitEditText"
+        app:layout_constraintStart_toStartOf="@+id/XClicksPerAngleUnitEditText" />
+
+    <EditText
+        android:id="@+id/YClicksPerAngleUnitEditText"
+        android:layout_width="54dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/XClicksPerAngleUnitEditText" />
+
+    <TextView
+        android:id="@+id/YClicksPerAngleUnitTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Y Clicks per unit angle"
+        app:layout_constraintBottom_toTopOf="@+id/YClicksPerAngleUnitEditText"
+        app:layout_constraintStart_toStartOf="@+id/YClicksPerAngleUnitEditText" />
+
+    <Button
+        android:id="@+id/calculateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="296dp"
+        android:onClick="onCalculateButtonClicked"
+        android:text="Calculate Zero"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/calcResultsTextView"
+        android:layout_width="360dp"
+        android:layout_height="320dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="monospace"
+        android:text="Awaiting Input..."
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calculateButton" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
