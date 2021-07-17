@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity
 {
     private Switch angleUnitSwitch;
+    private Switch lengthUnitSwitch;
 
     private EditText zeroingDistanceEditText;
     private EditText xDisplacementEditText;
@@ -18,11 +19,15 @@ public class MainActivity extends AppCompatActivity
     private EditText xClicksPerAngleEditText;
     private EditText yClicksPerAngleEditText;
 
+    private TextView zeroDistanceTextView;
     private TextView xClicksPerAngleTextView;
     private TextView yClicksPerAngleTextView;
+    private TextView xDisplacementTextView;
+    private TextView yDisplacementTextView;
     private TextView calcuResultTextView;
 
     private boolean usingMils;
+    private boolean usingMetricLength;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,6 +36,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         angleUnitSwitch = (Switch) findViewById(R.id.angularUnitsSwitch);
+        lengthUnitSwitch = (Switch) findViewById(R.id.lengthUnitSwitch);
 
         zeroingDistanceEditText = (EditText) findViewById(R.id.zeroingDistanceEditText);
         xDisplacementEditText = (EditText) findViewById(R.id.xDisplacementEditText);
@@ -38,15 +44,19 @@ public class MainActivity extends AppCompatActivity
         xClicksPerAngleEditText = (EditText) findViewById(R.id.XClicksPerAngleUnitEditText);
         yClicksPerAngleEditText = (EditText) findViewById(R.id.YClicksPerAngleUnitEditText);
 
+        zeroDistanceTextView = (TextView) findViewById(R.id.zeroingDistanceTextView);
         xClicksPerAngleTextView = (TextView) findViewById(R.id.XClicksPerAngleTextView);
         yClicksPerAngleTextView = (TextView) findViewById(R.id.YClicksPerAngleUnitTextView);
+        xDisplacementTextView = (TextView) findViewById(R.id.xDisplacementTextView);
+        yDisplacementTextView = (TextView) findViewById(R.id.yDisplacementTextView);
         calcuResultTextView = (TextView) findViewById(R.id.calcResultsTextView);
 
         usingMils = false;
-        updateAngleText();
+        usingMetricLength = false;
+        updateUnitTexts();
     }
 
-    public void updateAngleText()
+    public void updateUnitTexts()
     {
         if (usingMils)
         {
@@ -60,21 +70,42 @@ public class MainActivity extends AppCompatActivity
             yClicksPerAngleTextView.setText("Y Clicks per MOA");
             angleUnitSwitch.setText("Using MOA");
         }
+
+        if (usingMetricLength)
+        {
+            xDisplacementTextView.setText("X Displacement (cm)");
+            yDisplacementTextView.setText("Y Displacement (cm)");
+            zeroDistanceTextView.setText("Zeroing Distance (m)");
+            lengthUnitSwitch.setText("Units: Metric");
+        }
+        else
+        {
+            xDisplacementTextView.setText("X Displacement (in)");
+            yDisplacementTextView.setText("Y Displacement (in)");
+            zeroDistanceTextView.setText("Zeroing Distance (yd)");
+            lengthUnitSwitch.setText("Units: Freedom");
+        }
     }
 
-    public void onUnitsSwitchClicked(View view)
+    public void onAngularUnitsSwitchClicked(View view)
     {
         usingMils = angleUnitSwitch.isChecked();
-        updateAngleText();
+        updateUnitTexts();
+    }
+
+    public void onLengthUnitsSwitchClicked(View view)
+    {
+        usingMetricLength = lengthUnitSwitch.isChecked();
+        updateUnitTexts();
     }
 
     public void onCalculateButtonClicked(View view)
     {
         try
         {
-            double zeroDist = Double.parseDouble(zeroingDistanceEditText.getText().toString());
-            double xDisp = Double.parseDouble(xDisplacementEditText.getText().toString()) / 100.0;
-            double yDisp = Double.parseDouble(yDisplacementEditText.getText().toString()) / 100.0;
+            double zeroDist = (usingMetricLength ? 1.0 : .0254 * 36.0) * Double.parseDouble(zeroingDistanceEditText.getText().toString());
+            double xDisp = (usingMetricLength ? 1.0 : 100.0 * .0254) * Double.parseDouble(xDisplacementEditText.getText().toString()) / 100.0;
+            double yDisp = (usingMetricLength ? 1.0 : 100.0 * .0254) * Double.parseDouble(yDisplacementEditText.getText().toString()) / 100.0;
             double xClicksPerAng = Double.parseDouble(xClicksPerAngleEditText.getText().toString());
             double yClicksPerAng = Double.parseDouble(yClicksPerAngleEditText.getText().toString());
             double xAng = Math.atan(xDisp / zeroDist) * (usingMils ? 1000.0 : 60.0 * 180.0 / Math.PI);

@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="onLengthUnitsSwitchClicked"
     tools:context=".MainActivity">
 
-    <Switch
-        android:id="@+id/angularUnitsSwitch"
+    <Button
+        android:id="@+id/calculateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="onUnitsSwitchClicked"
-        android:text="AngleUnitsText"
+        android:layout_marginTop="296dp"
+        android:onClick="onCalculateButtonClicked"
+        android:text="Calculate Zero"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,14 +31,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/angularUnitsSwitch" />
 
-    <TextView
-        android:id="@+id/zeroingDistanceTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Zeroing Distance (m)"
-        app:layout_constraintBottom_toTopOf="@+id/zeroingDistanceEditText"
-        app:layout_constraintStart_toStartOf="@+id/zeroingDistanceEditText" />
-
     <EditText
         android:id="@+id/xDisplacementEditText"
         android:layout_width="50dp"
@@ -50,14 +42,6 @@
         android:text="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/zeroingDistanceEditText" />
-
-    <TextView
-        android:id="@+id/xDisplacementTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="X Displacement (cm)"
-        app:layout_constraintBottom_toTopOf="@+id/xDisplacementEditText"
-        app:layout_constraintStart_toStartOf="@+id/xDisplacementEditText" />
 
     <EditText
         android:id="@+id/yDisplacementEditText"
@@ -71,14 +55,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/xDisplacementEditText" />
 
-    <TextView
-        android:id="@+id/yDisplacementTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Y Displacement (cm)"
-        app:layout_constraintBottom_toTopOf="@+id/yDisplacementEditText"
-        app:layout_constraintStart_toStartOf="@+id/yDisplacementEditText" />
-
     <EditText
         android:id="@+id/XClicksPerAngleUnitEditText"
         android:layout_width="50dp"
@@ -90,14 +66,6 @@
         android:text="4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/XClicksPerAngleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="X Clicks per unit angle"
-        app:layout_constraintBottom_toTopOf="@+id/XClicksPerAngleUnitEditText"
-        app:layout_constraintStart_toStartOf="@+id/XClicksPerAngleUnitEditText" />
 
     <EditText
         android:id="@+id/YClicksPerAngleUnitEditText"
@@ -111,6 +79,60 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/XClicksPerAngleUnitEditText" />
 
+    <Switch
+        android:id="@+id/angularUnitsSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onAngularUnitsSwitchClicked"
+        android:text="AngleUnitsText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/lengthUnitSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onLengthUnitsSwitchClicked"
+        android:text="LengthUnitsText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/zeroingDistanceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zeroing Distance (m)"
+        app:layout_constraintBottom_toTopOf="@+id/zeroingDistanceEditText"
+        app:layout_constraintStart_toStartOf="@+id/zeroingDistanceEditText" />
+
+    <TextView
+        android:id="@+id/xDisplacementTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="X Displacement (cm)"
+        app:layout_constraintBottom_toTopOf="@+id/xDisplacementEditText"
+        app:layout_constraintStart_toStartOf="@+id/xDisplacementEditText" />
+
+    <TextView
+        android:id="@+id/yDisplacementTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Y Displacement (cm)"
+        app:layout_constraintBottom_toTopOf="@+id/yDisplacementEditText"
+        app:layout_constraintStart_toStartOf="@+id/yDisplacementEditText" />
+
+    <TextView
+        android:id="@+id/XClicksPerAngleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="X Clicks per unit angle"
+        app:layout_constraintBottom_toTopOf="@+id/XClicksPerAngleUnitEditText"
+        app:layout_constraintStart_toStartOf="@+id/XClicksPerAngleUnitEditText" />
+
     <TextView
         android:id="@+id/YClicksPerAngleUnitTextView"
         android:layout_width="wrap_content"
@@ -118,17 +140,6 @@
         android:text="Y Clicks per unit angle"
         app:layout_constraintBottom_toTopOf="@+id/YClicksPerAngleUnitEditText"
         app:layout_constraintStart_toStartOf="@+id/YClicksPerAngleUnitEditText" />
-
-    <Button
-        android:id="@+id/calculateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="296dp"
-        android:onClick="onCalculateButtonClicked"
-        android:text="Calculate Zero"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/calcResultsTextView"
