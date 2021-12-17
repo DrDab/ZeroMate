@@ -108,8 +108,8 @@ public class MainActivity extends AppCompatActivity
             double yDisp = (usingMetricLength ? 1.0 : 100.0 * .0254) * Double.parseDouble(yDisplacementEditText.getText().toString()) / 100.0;
             double xClicksPerAng = Double.parseDouble(xClicksPerAngleEditText.getText().toString());
             double yClicksPerAng = Double.parseDouble(yClicksPerAngleEditText.getText().toString());
-            double xAng = Math.atan(xDisp / zeroDist) * (usingMils ? 1000.0 : 60.0 * 180.0 / Math.PI);
-            double yAng = Math.atan(yDisp / zeroDist) * (usingMils ? 1000.0 : 60.0 * 180.0 / Math.PI);
+            double xAng = -Math.atan(xDisp / zeroDist) * (usingMils ? 1000.0 : 60.0 * 180.0 / Math.PI);
+            double yAng = -Math.atan(yDisp / zeroDist) * (usingMils ? 1000.0 : 60.0 * 180.0 / Math.PI);
             double xClicks = xAng * xClicksPerAng;
             double yClicks = yAng * yClicksPerAng;
             String out = "";
